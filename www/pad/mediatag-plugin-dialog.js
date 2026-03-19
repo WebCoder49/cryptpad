@@ -154,6 +154,7 @@ CKEDITOR.dialog.add('mediatag', function (editor) {
             if (!element) { return; }
 
             var el = element.findOne('media-tag');
+            var mediaEl = el.findOne('img');
             if (!el) { return; }
 
             var dialog = this.parts.contents.$;
@@ -166,14 +167,32 @@ CKEDITOR.dialog.add('mediatag', function (editor) {
                 if (wInput.value === "") {
                     el.removeAttribute('width');
                     el.removeStyle('width');
+                    if(mediaEl) { // Only try resizing the image preview if
+                        // the image preview exists
+                        mediaEl.removeAttribute('width');
+                        mediaEl.removeStyle('width');
+                    }
                 } else {
                     el.setSize('width', parseInt(wInput.value));
+                    if(mediaEl) { // Only try resizing the image preview if
+                        // the image preview exists
+                        mediaEl.setSize('width', parseInt(wInput.value));
+                    }
                 }
                 if (hInput.value === "") {
                     el.removeAttribute('height');
                     el.removeStyle('height');
+                    if(mediaEl) { // Only try resizing the image preview if
+                        // the image preview exists
+                        mediaEl.removeAttribute('height');
+                        mediaEl.removeStyle('height');
+                    }
                 } else {
                     el.setSize('height', parseInt(hInput.value));
+                    if(mediaEl) { // Only try resizing the image preview if
+                        // the image preview exists
+                        mediaEl.setSize('width', parseInt(wInput.value));
+                    }
                 }
                 if (bInput.value === "") {
                     el.removeStyle('border-width');
